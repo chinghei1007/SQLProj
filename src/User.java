@@ -40,6 +40,7 @@ public class User {
     public static void surfing(Connection connection) throws SQLException {
         System.out.println("Here are all the products available");
         Statement statement = connection.createStatement();
+        statement.executeQuery("select * from products");
     }
     public static void shoppingCart(Connection connection){
 
