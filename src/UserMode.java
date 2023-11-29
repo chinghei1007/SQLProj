@@ -1,8 +1,10 @@
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class UserMode {
-    public static void userMode(Connection connection) {
+    public static void userMode(Connection connection) throws SQLException {
         System.out.println("Login successfully");
         //Home 1.Surfing 2.Shopping Cart 3.Exit
         //Surfing 1.Show all 2.Filtered
@@ -37,9 +39,10 @@ public class UserMode {
 
         }
     }
-    private static void lookproducts(Connection connection) {
+    private static void lookproducts(Connection connection) throws SQLException {
         System.out.println("Here are some products for you: ");
-
+        Statement statement = connection.createStatement();
+        String sql = "select name, brand, price from products order by random() limit 40;";
     }
     private static void shoppingcart(Connection connection) {
     }

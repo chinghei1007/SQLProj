@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="2911.2109">
-      <change afterPath="$PROJECT_DIR$/src/DeveloperMode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
+    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="2911.2150">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701263467358</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="2911.2150">
+      <option name="closed" value="true" />
+      <created>1701265866443</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1701265866443</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,7 +199,8 @@
     <MESSAGE value="2811.2127" />
     <MESSAGE value="2911.1921" />
     <MESSAGE value="2911.2109" />
-    <option name="LAST_COMMIT_MESSAGE" value="2911.2109" />
+    <MESSAGE value="2911.2150" />
+    <option name="LAST_COMMIT_MESSAGE" value="2911.2150" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

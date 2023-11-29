@@ -40,7 +40,7 @@ public class creatingfata {
             statement.executeUpdate(string);
         }
 */
-        String sql = "select * from products";
+        String sql = "select name, brand, price from products order by random() limit 40;";
         ShowTable.showtable(statement,sql);
         /*
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
