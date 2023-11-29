@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="2911.1921">
+    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="2911.2109">
+      <change afterPath="$PROJECT_DIR$/src/DeveloperMode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/src.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShowTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatingfata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatingfata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701257001420</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="2911.2109">
+      <option name="closed" value="true" />
+      <created>1701263408869</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701263408869</updated>
+    </task>
+    <task id="LOCAL-00009" summary="2911.2109">
+      <option name="closed" value="true" />
+      <created>1701263467358</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1701263467358</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,7 +193,8 @@
     <MESSAGE value="2811.1930" />
     <MESSAGE value="2811.2127" />
     <MESSAGE value="2911.1921" />
-    <option name="LAST_COMMIT_MESSAGE" value="2911.1921" />
+    <MESSAGE value="2911.2109" />
+    <option name="LAST_COMMIT_MESSAGE" value="2911.2109" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
