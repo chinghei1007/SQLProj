@@ -1,23 +1,13 @@
-import org.h2.Driver;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class creatingfata {
-    //public static void dataInsert() throws SQLException {
-    public static void main(String[] args) throws SQLException {
-
-        Connection connection;
-        String username = "test";
-        String password = "123";
-        String url = "jdbc:h2:./h2/src";
-        DriverManager.registerDriver(new org.h2.Driver());
-        connection = DriverManager.getConnection(url,username,password);
-        Statement statement = connection.createStatement();
-        //statement.executeUpdate("create table products (id INT, category VARCHAR(20), price Decimal(12),brand VARCHAR(50), name VARCHAR(70))");
+public class ShowTable {
+    public static void showtable(Statement statement) throws SQLException {
         ResultSet resultSet = statement.executeQuery("select * from products");
-        /*
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int colCount=resultSetMetaData.getColumnCount();
         System.out.println(colCount);
@@ -36,8 +26,6 @@ public class creatingfata {
         jFrame.setSize(500,600);
         jFrame.add(jScrollPane);
         jFrame.setVisible(true);
-*/
-
 
     }
 }
