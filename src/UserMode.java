@@ -43,6 +43,7 @@ public class UserMode {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
         String sql = "select name, brand, price from products order by random() limit 40;";
+        ShowTable.showtable(statement,sql);
     }
     private static void shoppingcart(Connection connection) {
     }
