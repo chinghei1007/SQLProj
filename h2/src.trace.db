@@ -1,0 +1,118 @@
+2023-11-29 20:17:51.628150+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PRICE_RANGE" not found; SQL statement:
+INSERT INTO products (id, category, price_range, brand, name)VALUES (1, 'Electronics', 999.99, 'Samsung', 'Name11'); [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:37)
+2023-11-29 20:18:19.087105+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (24, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Shampoo for Color Treated Hair[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (24, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Shampoo for Color Treated Hair'); [42000-224]
+2023-11-29 20:21:55.914651+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "Electronics" not found; SQL statement:
+INSERT INTO products (id, category, price, brand, name)VALUES (1, "Electronics", 999.99, "Samsung", "Name11"); [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:300)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:37)
+2023-11-29 20:24:03.351852+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "Electronics" not found; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (1, "Electronics", 999.99, "Samsung", "Name11"); [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:300)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:37)
+2023-11-29 20:25:34.081177+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (24, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Shampoo for Color Treated Hair[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (24, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Shampoo for Color Treated Hair'); [42000-224]
+2023-11-29 20:27:47.289365+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(70)": "'WF-1000XM3 Industry Leading Noise Cancelling Truly Wireless Earbud Headphones' (77)"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (26, 'Electronics', 149.00, 'Sony', 'WF-1000XM3 Industry Leading Noise Cancelling Truly Wireless Earbud Headphones') [22001-224]
+2023-11-29 20:28:27.183267+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(70)": "'Hydro Boost Hyaluronic Acid Hydrating Tinted Moisturizer Broad Spectrum SPF 30' (78)"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (54, 'Beauty', 24.99, 'Neutrogena', 'Hydro Boost Hyaluronic Acid Hydrating Tinted Moisturizer Broad Spectrum SPF 30') [22001-224]
+2023-11-29 20:30:16.603910+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (150, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Color Care Shampoo[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (150, 'Beauty', 29.99, 'L'Oreal Paris', 'EverPure Sulfate Free Color Care Shampoo'); [42000-224]
+2023-11-29 20:30:40.002505+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (159, 'Home', 119.99, 'Zwilling J.A. Henckels', '8-Inch Chef's Knife[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (159, 'Home', 119.99, 'Zwilling J.A. Henckels', '8-Inch Chef's Knife'); [42000-224]
+2023-11-29 20:30:52.995688+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (216, 'Beauty', 24.99, 'L'Oreal Paris', 'Voluminous Original Mascara[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (216, 'Beauty', 24.99, 'L'Oreal Paris', 'Voluminous Original Mascara'); [42000-224]
+2023-11-29 20:31:24.200618+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (221, 'Books', 16.99, 'Marvel', 'Spider-Man/Deadpool Vol. 1: Isn't it Bromantic?[*]');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (221, 'Books', 16.99, 'Marvel', 'Spider-Man/Deadpool Vol. 1: Isn't it Bromantic?'); [42000-224]
+2023-11-29 20:31:40.736928+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO products (id, category, price, brand, name) VALUES (274, 'Clothing', 79.50, 'Lululemon', [*]'Align Pant 28'');"; SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (274, 'Clothing', 79.50, 'Lululemon', 'Align Pant 28''); [42000-224]
+2023-11-29 20:37:38.707842+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE products \000a[*]MODIFY COLUMN name FIRST;"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE products 
+MODIFY COLUMN name FIRST; [42001-224]
+2023-11-29 20:38:15.085633+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE products [*]mODIFY COLUMN name FIRST"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE products mODIFY COLUMN name FIRST [42001-224]
+2023-11-29 20:42:59.757419+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'Samsung' (PRODUCTS1: ""PRICE"" DECIMAL(12))"; SQL statement:
+insert into products1 select * from products [22018-224]
+2023-11-29 20:44:02.181993+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-224]
+2023-11-29 20:44:32.532520+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS1" not found; SQL statement:
+insert into products1 select id,name,category,price,brand from products [42102-224]
+2023-11-29 20:45:04.418509+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-224]
+2023-11-29 20:51:03.323487+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS" not found (this database is empty); SQL statement:
+select * from products [42104-224]
+2023-11-29 20:51:40.503371+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS" already exists; SQL statement:
+create table products (id INT, name VARCHAR(256), category VARCHAR(20), price Decimal(12),brand VARCHAR(50) ) [42101-224]
+2023-11-29 20:52:06.158248+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCTS" not found (this database is empty); SQL statement:
+INSERT INTO products (id, category, price, brand, name) VALUES (1, 'Electronics', 999.99, 'Samsung', 'Name11'); [42104-224]
+2023-11-29 20:52:36.385106+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-224]
+2023-11-29 20:54:28.347105+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-224]
+2023-11-29 20:55:35.538323+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-224]
