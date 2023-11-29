@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,8 +43,19 @@ public class UserMode {
     private static void lookproducts(Connection connection) throws SQLException {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
-        String sql = "select name, brand, price from products order by random() limit 40;";
-        ShowTable.showtable(statement,sql);
+        String sql = "select id, name, brand, price from products order by random() limit 40;";
+        SwingUtilities.invokeLater(() ->{
+            try {
+                ShowTable.showtable(statement,sql);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        System.out.println("Would you like to buy any of them?");
+        String input;
+        Scanner scanner = new Scanner(System.in);
+        input = scanner.nextLine();
+
     }
     private static void shoppingcart(Connection connection) {
     }
