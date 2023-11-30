@@ -120,7 +120,7 @@ public class UserMode {
                         addtoshoppingcart(name, quantity, ID);
                         break;
                     case "2":
-                        confirmAddToShoppingCart(name, quantity, ID);
+                        confirmAddToShoppingCart(name, quantity, ID, quantity);
                         break;
                     case "3":
                         return;
@@ -130,10 +130,10 @@ public class UserMode {
             }
 
         } else {
-            confirmAddToShoppingCart(name, amount, ID);
+            confirmAddToShoppingCart(name, amount, ID, quantity);
         }
     }
-    private static void confirmAddToShoppingCart(String name, int amount, int ID){
+    private static void confirmAddToShoppingCart(String name, int amount, int ID, int quantity){
         Scanner scanner = new Scanner(System.in);
         String choice;
         System.out.println("Product Information as below: ");
@@ -148,6 +148,14 @@ public class UserMode {
                     System.out.println("What would you like to do?");
                     System.out.println("1. Update amount");
                     System.out.println("2. Cancel operation");
+                    String choice2;
+                    choice2 = scanner.nextLine().trim();
+                    if (choice2.equals("1")){
+
+                    }
+
+
+
                 default:
                     System.out.println("Invalid input, please try again");
             }

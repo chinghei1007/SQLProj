@@ -6,13 +6,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class creatingfata {
     //public static void dataInsert() throws SQLException {
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException, IOException, NoSuchAlgorithmException {
 
         Connection connection;
         String username = "test";
@@ -23,14 +24,21 @@ public class creatingfata {
         Statement statement = connection.createStatement();
 
         //製造table
-        //statement.executeUpdate("create table products (id INT, name VARCHAR(256), category VARCHAR(20), price Decimal(12),brand VARCHAR(50) )");
+        statement.executeUpdate("drop table users");
+        statement.executeUpdate("create table Users (id INT PRIMARY KEY AUTO_INCREMENT," +
+                "  username VARCHAR(50) UNIQUE NOT NULL," +
+                "  password VARCHAR(255) NOT NULL,  " +
+                "  is_admin BOOLEAN DEFAULT FALSE," +
+                "  shipping_address TEXT" +
+                ");");
+        //john, pw123
+        statement.executeUpdate("INSERT INTO Users (username, password, is_admin, shipping_address) VALUES ('john', 'pw123', FALSE, '123 Main St');");
         //statement.executeUpdate("insert into products1 select id,name,category,price,brand from products");
         //statement.executeUpdate("DROP TABLE products;");
 
         //add column quantity
-        ResultSet resultSet = statement.executeQuery("select id, quantity from products where id = 56;");
-        int count = resultSet.getInt("id");
-        System.out.println(count);
+        //statement.executeUpdate("create table Users, ");
+        ShowTable.showtable(statement,"select * from Users");
 
 
         //添加record1
