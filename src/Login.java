@@ -23,7 +23,7 @@ public class Login {
             }
         }
         if (!username.trim().equalsIgnoreCase("admin")){
-            UserMode.userMode(connection);
+            UserMode.userMode(connection,username);
 
         }else{
             DeveloperMode.developerMode(connection);

@@ -1,11 +1,16 @@
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserMode {
-    public static void userMode(Connection connection) throws SQLException {
+    List<String> shoppingCart = new ArrayList<>();
+    public static void userMode(Connection connection, String username) throws SQLException {
         System.out.println("Login successfully");
         //Home 1.Surfing 2.Shopping Cart 3.Exit
         //Surfing 1.Show all 2.Filtered
@@ -43,20 +48,88 @@ public class UserMode {
     private static void lookproducts(Connection connection) throws SQLException {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
-        String sql = "select id, name, brand, price from products order by random() limit 40;";
-        SwingUtilities.invokeLater(() ->{
+        String sql = "select id, name, brand, price from products order by random() limit 30;";
+        SwingUtilities.invokeLater(() -> {
             try {
-                ShowTable.showtable(statement,sql);
+                ShowTable.showtable(statement, sql);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });
-        System.out.println("Would you like to buy any of them?");
+        while (true) {
+            System.out.println("Would you like to add any of them to the shopping cart? (Y/N)");
+
         String input;
+        int quantityinDb = 0;
+        String name = "";
+        String productID = "";
         Scanner scanner = new Scanner(System.in);
         input = scanner.nextLine();
+        switch (input.toLowerCase()) {
+            case "y":
+                while (true) {
+                    System.out.println("Please input the Product ID");
+                    productID = scanner.nextLine().trim();
+                    if (isPositiveInteger(productID)) {
+                        int count = 0;
+                        ResultSet resultSet = statement.executeQuery("select  name, count(*), quantity from products where id = " + productID + ";");
+                        if (resultSet.next()) {
+                            quantityinDb = resultSet.getInt("quantity");
+                            count = resultSet.getInt("count(*)");
+                            name = resultSet.getString("name");
+                        }
+                        if (count == 0) {
+                            System.out.println("Product not found, Please try again");
+                            continue;
+                        } else {
+                            addtoshoppingcart(name, quantityinDb, Integer.parseInt(productID));
+                        }
+                    }
+                }
+            case "n":
+                System.out.println("What you wish to do next?");
+
+
+        }
+        }
 
     }
     private static void shoppingcart(Connection connection) {
+    }
+
+    private static void addtoshoppingcart(String name, int quantity, int ID) {
+        int amount = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("How many would you like to buy?");
+        amount = scanner.nextInt();
+
+
+        if (amount > quantity) {
+            System.out.println("Not enough quantity available. Only " + quantity + " left in stock.");
+            System.out.println("What would you like to do?");
+            System.out.println("1. Update quantity");
+            System.out.println("2. Buy remaining (" + quantity + ")");
+            System.out.println("3. Cancel operation");
+            String choice = "";
+            choice = scanner.nextLine();
+
+        } else {
+            confirmAddToShoppingCart(name, quantity, ID);
+        }
+    }
+    private static void confirmAddToShoppingCart(String name, int quantity, int ID){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Product Information as below: ");
+        System.out.println("Product name: "+ name);
+        System.out.println("Quantity: "+quantity);
+        System.out.println("\nIs the information correct?");
+    }
+    public static boolean isPositiveInteger(String input){
+        try{
+            int number = Integer.parseInt(input);
+            return number >=0;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 }

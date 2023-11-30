@@ -13,7 +13,6 @@ public class ShowTable {
         ResultSet resultSet = statement.executeQuery(sql);
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int colCount=resultSetMetaData.getColumnCount();
-        System.out.println(colCount);
 
         DefaultTableModel tableModel = new DefaultTableModel();
         String[] colNames = new String[colCount];

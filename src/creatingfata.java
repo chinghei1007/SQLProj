@@ -27,6 +27,11 @@ public class creatingfata {
         //statement.executeUpdate("insert into products1 select id,name,category,price,brand from products");
         //statement.executeUpdate("DROP TABLE products;");
 
+        //add column quantity
+        ResultSet resultSet = statement.executeQuery("select id, quantity from products where id = 56;");
+        int count = resultSet.getInt("id");
+        System.out.println(count);
+
 
         //添加record1
         /*BufferedReader reader = new BufferedReader(new FileReader("records1.txt"));
@@ -40,8 +45,15 @@ public class creatingfata {
             statement.executeUpdate(string);
         }
 */
-        String sql = "select name, brand, price from products order by random() limit 40;";
-        ShowTable.showtable(statement,sql);
+        /*String sql = "select id, name, brand, price from products order by random() limit 40;";
+        SwingUtilities.invokeLater(() -> {
+            try {
+                ShowTable.showtable(statement,sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        System.out.println("this is the proof of the program continue running after the table appeared");
         /*
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int colCount=resultSetMetaData.getColumnCount();
