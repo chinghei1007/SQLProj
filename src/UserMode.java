@@ -89,6 +89,7 @@ public class UserMode {
                 }
             case "n":
                 System.out.println("What you wish to do next?");
+                break;
             default:
                 System.out.println("Invalid input, please try again.");
 
