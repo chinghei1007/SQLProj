@@ -83,12 +83,14 @@ public class UserMode {
                             continue;
                         } else {
                             addtoshoppingcart(name, quantityinDb, Integer.parseInt(productID));
+                            break;
                         }
                     }
                 }
             case "n":
                 System.out.println("What you wish to do next?");
-
+            default:
+                System.out.println("Invalid input, please try again.");
 
         }
         }
@@ -100,29 +102,56 @@ public class UserMode {
     private static void addtoshoppingcart(String name, int quantity, int ID) {
         int amount = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How many would you like to buy?");
+        System.out.println("Please input amount");
         amount = scanner.nextInt();
 
 
         if (amount > quantity) {
             System.out.println("Not enough quantity available. Only " + quantity + " left in stock.");
             System.out.println("What would you like to do?");
-            System.out.println("1. Update quantity");
+            System.out.println("1. Update amount");
             System.out.println("2. Buy remaining (" + quantity + ")");
             System.out.println("3. Cancel operation");
             String choice = "";
             choice = scanner.nextLine();
+            while (true) {
+                switch (choice) {
+                    case "1":
+                        addtoshoppingcart(name, quantity, ID);
+                        break;
+                    case "2":
+                        confirmAddToShoppingCart(name, quantity, ID);
+                        break;
+                    case "3":
+                        return;
+                    default:
+                        System.out.println("Invalid input, please try again");
+                }
+            }
 
         } else {
-            confirmAddToShoppingCart(name, quantity, ID);
+            confirmAddToShoppingCart(name, amount, ID);
         }
     }
-    private static void confirmAddToShoppingCart(String name, int quantity, int ID){
+    private static void confirmAddToShoppingCart(String name, int amount, int ID){
         Scanner scanner = new Scanner(System.in);
+        String choice;
         System.out.println("Product Information as below: ");
         System.out.println("Product name: "+ name);
-        System.out.println("Quantity: "+quantity);
+        System.out.println("Quantity: "+amount);
         System.out.println("\nIs the information correct?");
+        choice = scanner.nextLine();
+        while(true) {
+            switch (choice.toLowerCase()) {
+                case "y":
+                case "n":
+                    System.out.println("What would you like to do?");
+                    System.out.println("1. Update amount");
+                    System.out.println("2. Cancel operation");
+                default:
+                    System.out.println("Invalid input, please try again");
+            }
+        }
     }
     public static boolean isPositiveInteger(String input){
         try{
