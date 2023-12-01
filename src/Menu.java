@@ -7,5 +7,6 @@ public class Menu {
         System.out.println("Welcome to the Online Shopping System");
         Login login = new Login();
         login.authenticate();
+        System.exit(0);
     }
 }

@@ -40,7 +40,8 @@ public class Login {
                         developMode.display(conn);
                     } else {
                         UserMode userMode = new UserMode();
-                        System.out.println("User mode"); UserMode.userMode(conn,username);
+                        System.out.println("User mode");
+                        UserMode.userMode(conn,username);
                     }
                 } else {
                     System.out.println("Login failed");

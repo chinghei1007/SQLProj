@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="0112.1645">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/src.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/src.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatingfata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatingfata.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,6 +278,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Login.java</url>
+          <line>12</line>
+          <properties class="Login" method="authenticate">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,7 +49,7 @@ public class UserMode {
     private static void lookproducts(Connection connection, String username) throws SQLException {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
-        String sql = "select id, name, brand, price from products order by rand() limit 30;";
+        String sql = "select id, name, brand, price, quantity from products order by rand() limit 30;";
         SwingUtilities.invokeLater(() -> {
             try {
                 ShowTable.showtable(statement, sql);
@@ -98,8 +98,10 @@ public class UserMode {
                 switch (choice){
                     case "1":
                         lookProductscategory(connection, username);
+                        continue;
                     case "2":
                         shoppingcart(connection,username);
+                        continue;
                     case "3":
                         return;
                 }
@@ -110,10 +112,41 @@ public class UserMode {
         }
     }
     private static void lookProductscategory(Connection connection, String username) throws SQLException{
+        Statement statement = connection.createStatement();
+        Scanner scanner = new Scanner(System.in);
+        String choice;
+        ResultSet resultSet = statement.executeQuery("Select distinct category from products group by category");
+        List<String> categories = new ArrayList<>();
+        while(resultSet.next()){
+            categories.add(resultSet.getString("category"));
+        }
+        while(true) {
+            System.out.println("You can filter products by the following categories");
+            int i = 0;
+            for (i = 0; i < categories.size(); i++) {
+                System.out.println(i + 1 + ". " + capitalize(categories.get(i)));
+            }
+            System.out.println(i + ". No filter");
+            choice = scanner.next();
 
+            if (!isDigit(choice)) {
+                System.out.println("Please input only numbers");
+            }
+            if (choice.equals(String.valueOf(categories.size()))){ //no filter
+                ShowTable.showtable(statement, "select id, name, category, brand, quantity from products");
+            }else if (Integer.parseInt(choice) < categories.size()){
+                String category = categories.get(Integer.parseInt(choice));
+                ShowTable.showtable(statement, "select id, name, "+category+", brand, quantity from products");
+            }
+
+        }
     }
 
-    private static void shoppingcart(Connection connection, String username) {
+    private static void shoppingcart(Connection connection, String username) throws SQLException {
+        System.out.println("Here are all the items in your shopping cart");
+        Statement statement = connection.createStatement();
+        //statement.executeQuery("select p.name, p.id, s.amount from shoppingcart as s, products as p where s.prodid = p.id and s.username =" + username);
+        ShowTable.showtable(statement,"select p.id, p.name,  sum(s.amount) as amount from shoppingcart as s, products as p where s.prodid = p.id and s.username ='" + username+"' group by p.id");
 
     }
 
@@ -189,4 +222,11 @@ public class UserMode {
             return false;
         }
     }
+    private static String capitalize(String str) {
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
+    static boolean isDigit(String str) {
+        return str.matches("\\d+");
+    }
+
 }
