@@ -32,7 +32,10 @@ public class creatingfata {
                 "  shipping_address TEXT" +
                 ");");
          */
-        //statement.executeUpdate("ALTER TABLE products " + "ADD COLUMN id INT primary key auto_increment;");
+        //statement.executeUpdate("delete from shoppingcart");
+        //statement.executeUpdate("ALTER TABLE products " + "ADD COLUMN quantity int;");
+        //statement.executeUpdate("UPDATE products" + " SET quantity = FLOOR(RAND() * 101);");
+
         //statement.executeUpdate("ALTER TABLE shoppingcart ADD COLUMN amount int;");
         //statement.executeUpdate("ALTER TABLE products aLTER COLUMN id SET PRIMARY KEY AUTO_INCREMENT");
         //statement.executeUpdate("create table products (id int, name varchar(100), category varchar(100), price decimal(10,2), brand varchar(100))");
@@ -43,7 +46,6 @@ public class creatingfata {
         //statement.executeUpdate("insert into products1 select id,name,category,price,brand from products");
         //statement.executeUpdate("DROP TABLE products;");
 
-        //add column quantity
         //statement.executeUpdate("create table Users, ");
         ShowTable.showtable(statement,"select * from shoppingcart");
 
@@ -61,7 +63,7 @@ public class creatingfata {
             statement.executeUpdate(string);
         }
 */
-        /*String sql = "select id, name, brand, price from products order by random() limit 40;";
+        /*String sql = "select id, name, brand, price from products order by rand() limit 40;";
         SwingUtilities.invokeLater(() -> {
             try {
                 ShowTable.showtable(statement,sql);

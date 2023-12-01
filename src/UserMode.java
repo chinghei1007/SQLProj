@@ -92,18 +92,29 @@ public class UserMode {
                 System.out.println("What you wish to do next?");
                 System.out.println("1. Search for more products");
                 System.out.println("2. Look at items in shopping cart");
+                System.out.println("3. Return to main menu");
                 String choice = "";
-
-
+                choice = scanner.nextLine();
+                switch (choice){
+                    case "1":
+                        lookProductscategory(connection, username);
+                    case "2":
+                        shoppingcart(connection,username);
+                    case "3":
+                        return;
+                }
                 break;
             default:
                 System.out.println("Invalid input, please try again.");
-
         }
         }
+    }
+    private static void lookProductscategory(Connection connection, String username) throws SQLException{
 
     }
-    private static void shoppingcart(Connection connection) {
+
+    private static void shoppingcart(Connection connection, String username) {
+
     }
 
     private static void addtoshoppingcart(String username, Statement statement, String name, int quantity, int ID) throws SQLException {
@@ -151,9 +162,9 @@ public class UserMode {
         while(true) {
             switch (choice.toLowerCase()) {
                 case "y":
-                    statement.executeUpdate("insert into shoppingcart (username, prodid, amount) values ("+ username + "," + ID + "," + amount + ")");
+                    statement.executeUpdate("insert into shoppingcart (username, prodid, amount) values ('"+ username + "'," + ID + "," + amount + ")");
                     System.out.println("executed addtoShoppingCart");
-                    break;
+                    return;
                 case "n":
                     System.out.println("What would you like to do?");
                     System.out.println("1. Update amount");

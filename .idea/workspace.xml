@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="3011.2337">
-      <change afterPath="$PROJECT_DIR$/src/temp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="0112.1645">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/src.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/src.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/records1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/records1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/creatingfata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatingfata.java" afterDir="false" />
     </list>
@@ -68,7 +64,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.creatingfata">
+  <component name="RunManager" selected="Application.Menu">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SQLProject" />
@@ -99,9 +95,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Menu" />
         <item itemvalue="Application.creatingfata" />
         <item itemvalue="Application.temp" />
-        <item itemvalue="Application.Menu" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -235,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701358631612</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="0112.1645">
+      <option name="closed" value="true" />
+      <created>1701420330529</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701420330529</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,7 +264,8 @@
     <MESSAGE value="3011.2137" />
     <MESSAGE value="3011.2153" />
     <MESSAGE value="3011.2337" />
-    <option name="LAST_COMMIT_MESSAGE" value="3011.2337" />
+    <MESSAGE value="0112.1645" />
+    <option name="LAST_COMMIT_MESSAGE" value="0112.1645" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
