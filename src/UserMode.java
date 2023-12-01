@@ -3,10 +3,7 @@ import javax.swing.plaf.nimbus.State;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserMode {
     List<String> shoppingCart = new ArrayList<>();
@@ -419,14 +416,80 @@ public class UserMode {
     }*/
 
     private static void manageCart(Connection conn, String user) throws SQLException {
-
+        Scanner scanner = new Scanner(System.in);
         while(true) {
+            System.out.println("Please select your action\n\t1. Delete item\n\t2. Update amount\n\t3.Exit");
+            String action;
+            action = scanner.nextLine();
+            switch (action){
+                case "1":
+                    int id;
+                    while (true) {
+                        System.out.println("Please enter the ID of the item to delete: ");
+                        id = scanner.nextInt();
+                        if (!isPositiveInteger(String.valueOf(id))){
+                            System.out.println("Please input only numbers");
+                            continue;
+                        }
+                        break;
+                    }
+                    deleteCartItem(conn, id);
+                    continue;
+                case "2":
+                    String id2;
+                    String newAmount="";
+                    while(true){
+                        System.out.println("Enter the ID of the item to update: ");
+                        id2 = scanner.nextLine();
+                        if (!isPositiveInteger(id2)){
+                            System.out.println("Please type in only numbers");
+                            continue;
+                        }
+                        if(isItemExist(conn, Integer.parseInt(id2))){
+                            while(true) {
+                                newAmount = scanner.nextLine();
+                                if (!isPositiveInteger(newAmount)){
+                                    System.out.println("Please type in only numbers");
+                                    continue;
+                                }break;
+                            }
+
+                        }
+                        break;
+                    }
+                    updateCartAmount(conn, Integer.parseInt(id2),Integer.parseInt(newAmount));
+                case "3":
+                    return;
+                default:
+                    System.out.println("Invalid input, please try again");
+            }
             // show cart
             // get item action - add, remove, etc
             // update cart
             // show cart
         }
 
+    }
+    private static void deleteCartItem(Connection conn, int id) throws SQLException{
+        Statement statement = conn.createStatement();
+        int count = statement.executeUpdate("delete from shoppingcart where id= " + id);
+        statement.close();
+        if (count ==0){
+            System.out.println("Item does not exist");
+        }else{
+            System.out.println("Item deleted");
+        }
+    }
+    private static void updateCartAmount(Connection conn, int id, int newAmount) throws SQLException {
+        if (!isAmountValid(conn,id,newAmount)){
+            System.out.println("Invalid amount, the new amount is lagrer than the product quantity");
+            return;
+        }
+        mergeCartByProductId(conn, id);
+        Statement statement = conn.createStatement();
+        statement.executeUpdate("update shoppingcart set amount = " + newAmount + "where prodid = " + id);
+        statement.close();
+        System.out.println("Item amount updated");
     }
 
     private static void addtoshoppingcart(String username, Statement statement, String name, int quantity, int ID) throws SQLException {
@@ -522,6 +585,43 @@ public class UserMode {
         }
         return true;
     }
+    public static void mergeCartByProductId(Connection conn, int prodId) throws SQLException {
+
+        Statement stmt = conn.createStatement();
+
+        Map<String, Integer> mergedCart = new HashMap<>();
+
+        ResultSet rs = stmt.executeQuery("SELECT username, amount FROM shoppingcart WHERE prodid=" + prodId);
+
+        while(rs.next()) {
+
+            String username = rs.getString("username");
+            int amount = rs.getInt("amount");
+
+            if(mergedCart.containsKey(username)) {
+                int existingAmount = mergedCart.get(username);
+                mergedCart.put(username, existingAmount + amount);
+            }
+            else {
+                mergedCart.put(username, amount);
+            }
+        }
+
+        rs.close();
+
+        stmt.executeUpdate("DELETE FROM shoppingcart WHERE prodid="+prodId);
+
+        for(Map.Entry<String, Integer> entry : mergedCart.entrySet()) {
+
+            String username = entry.getKey();
+            int amount = entry.getValue();
+
+            stmt.executeUpdate("INSERT INTO shoppingcart VALUES('"+username+"',"+prodId+","+amount+")");
+        }
+
+        stmt.close();
+
+    }
     public static boolean isPositiveInteger(String input){
         try{
             int number = Integer.parseInt(input);
@@ -529,6 +629,29 @@ public class UserMode {
         }catch (NumberFormatException e){
             return false;
         }
+    }
+    private static boolean isAmountValid(Connection connection, int id, int newAmound) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select quantity from products where id =" + id);
+        if(resultSet.next()){
+            int quantity = resultSet.getInt("quantity");
+            return quantity >= newAmound;
+        }
+    return false;}
+    private static boolean isItemExist(Connection conn, int itemId) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM shoppingcart WHERE id = ?");
+        stmt.setInt(1, itemId);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int count = rs.getInt("count");
+            return count > 0;
+        }
+
+        rs.close();
+        stmt.close();
+
+        return false;
     }
     private static String capitalize(String str) {
         return Character.toUpperCase(str.charAt(0)) + str.substring(1);
