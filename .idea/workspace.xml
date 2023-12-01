@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="0112.2204">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/src.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/src.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/src.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Loginold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Loginold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatingfata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatingfata.java" afterDir="false" />
-    </list>
+    <list default="true" id="26b7091f-98c1-474f-bad3-4781da0fcbea" name="Changes" comment="0112.2330" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -256,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701439474646</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="0112.2330">
+      <option name="closed" value="true" />
+      <created>1701444620306</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701444620306</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -284,7 +285,8 @@
     <MESSAGE value="0112.1645" />
     <MESSAGE value="0112.2034" />
     <MESSAGE value="0112.2204" />
-    <option name="LAST_COMMIT_MESSAGE" value="0112.2204" />
+    <MESSAGE value="0112.2330" />
+    <option name="LAST_COMMIT_MESSAGE" value="0112.2330" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
