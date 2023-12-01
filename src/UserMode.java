@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -132,9 +133,11 @@ public class UserMode {
             }
             if (choice.equals(String.valueOf(categories.size()))){ //no filter
                 ShowTable.showtable(statement, "select id, name, category, brand, quantity from products");
+                return;
             }else if (Integer.parseInt(choice) < categories.size()){
-                String category = categories.get(Integer.parseInt(choice));
-                ShowTable.showtable(statement, "select id, name, "+category+", brand, quantity from products");
+                String category = categories.get(Integer.parseInt(choice)-1);
+                ShowTable.showtable(statement, "select id, name, brand, quantity from products where category = '" + category + "'");
+                return;
             }
 
         }
@@ -146,7 +149,7 @@ public class UserMode {
         Statement statement = connection.createStatement();
 
         ShowTable.showtable(statement,
-                "select p.id, p.name, sum(s.amount) from shoppingcart s join products p on s.prodid = p.id where s.username = '"+username+"' group by p.id");
+                "select p.id, p.name, sum(s.amount) as amount, p.price as price from shoppingcart s join products p on s.prodid = p.id where s.username = '"+username+"' group by p.id");
 
         while(true) {
 
@@ -176,39 +179,57 @@ public class UserMode {
         ResultSet resultSet;
         Scanner scanner = new Scanner(System.in);
         Statement statement = connection.createStatement();
-        ShowTable.showtable(statement,"select p.name,sum(s.amount), p.price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid group by s.prodid");
+        //ShowTable.showtable(statement,"select  p.name,sum(s.amount), p.price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid group by s.prodid");
         String ID;
         while (true) {
             System.out.println("Which would you like to purchase?");
             ID = scanner.nextLine().trim();
             if (!isPositiveInteger(ID)){
                 System.out.println("Please input correct ID");continue;}
-            resultSet = statement.executeQuery("select p.name as name, count(*), p.price as price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid and s.prodid ="+ID+" group by s.prodid");
+            resultSet = statement.executeQuery("select p.id as id, sum(s.amount) as amount, p.quantity as quantity, p.name as name, count(*), p.price as price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid and s.prodid ="+ID+" group by s.prodid");
             break;
         }
+        int id =0;
         int exist=0;
+        int quantity =0;
+        int amount=0;
         String name = "";
         float price = 0;
         String payment = "";
         String review;
         if (resultSet.next()){
+            id = resultSet.getInt("id");
+            quantity = resultSet.getInt("quantity");
+            amount = resultSet.getInt("amount");
             name = resultSet.getString("name");
             exist = resultSet.getInt("count(*)");
             price = resultSet.getFloat("price");
         }
+        if (amount > quantity){
+            amount = changeNumber(amount,quantity);
+        }
         if (exist == 0) {
             System.out.println("Product does not exist in the shopping cart");
         }else{
-            System.out.println("Your shipping address is as below");
             String shippingaddress = "";
             resultSet = statement.executeQuery("select shipping_address from users where username='" + username +"'");
             if (resultSet.next()){
                 shippingaddress = resultSet.getString("shipping_address");
             }
+            if(shippingaddress==null){
+                System.out.println("Set your new shipping address, it will be used for next time");
+                String newSAdress = scanner.nextLine();
+                statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");
+
+            }else
             if (shippingaddress.isEmpty()){
+                System.out.println("Set your new shipping address, it will be used for next time");
+                String newSAdress = scanner.nextLine();
+                statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");
 
             }else{
                 String choice;
+                System.out.println("Your shipping address is as below");
             System.out.println(shippingaddress);
             System.out.println("Is it correct? Y/N");
             choice = scanner.next().toLowerCase();
@@ -220,7 +241,7 @@ public class UserMode {
                 statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");
 
             }}
-            System.out.println("Price: $" + price);
+            System.out.println("Price: $" + price*amount);
             while(true) {
                 System.out.println("Choose your payment method");
                 int[] paymentMethods = {1,2,3,4};
@@ -271,8 +292,34 @@ public class UserMode {
             }
 
             statement.executeUpdate("insert into payment_history(prod_name, price, payment_method, review) values ('" + name + "'," + price + ",'" + payment + "'," + review + ")");
+            statement.executeUpdate("delete from shoppingcart where id = " + id);
+            statement.executeUpdate("update products set quantity = quantity - "+amount +"where name = '" + name +"'");
             System.out.println( name + price + payment + review);
         }
+    }
+
+    public static int changeNumber(int amount, int quantity) {
+        Scanner scanner = new Scanner(System.in);
+        int newAmount = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            try {
+                System.out.print("Enter a new number: ");
+                newAmount = scanner.nextInt();
+                if (newAmount < quantity) {
+                    isValidInput = true;
+                } else {
+                    System.out.println("Number should be smaller than quantity.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.nextLine(); // Clear the input buffer
+            }
+        }
+
+        scanner.close();
+        return newAmount;
     }
     /*private static void purchaseAll(Connection conn, String username) throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -395,11 +442,12 @@ public class UserMode {
             System.out.println("1. Update amount");
             System.out.println("2. Buy remaining (" + quantity + ")");
             System.out.println("3. Cancel operation");
-            String choice = "";
-            choice = scanner.nextLine();
+            String choice;
             while (true) {
+                choice = scanner.nextLine();
                 switch (choice) {
                     case "1":
+                        scanner.close();
                         addtoshoppingcart(username,statement, name, quantity, ID);
                         break;
                     case "2":
@@ -409,6 +457,7 @@ public class UserMode {
                         return;
                     default:
                         System.out.println("Invalid input, please try again");
+
                 }
             }
 
@@ -438,6 +487,7 @@ public class UserMode {
                     choice2 = scanner.nextLine().trim();
                     if (choice2.equals("1")){
                         addtoshoppingcart(username, statement, name, quantity, ID);
+                        return;
                     } else if (choice2.equals("2")){
                         return;
                 }

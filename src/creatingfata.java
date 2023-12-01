@@ -54,7 +54,7 @@ public class creatingfata {
         //ShowTable.showtable(statement,"select * from payment_history");
         //ShowTable.showtable(statement, "select count(*), p.price from products p, shoppingcart s where s.username = 'john' and p.id = s.prodid and s.prodid =1 group by s.prodid");
         //ShowTable.showtable(statement,"select p.name,s.amount, p.price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid");
-        ShowTable.showtable(statement,"Select * from users");
+        ShowTable.showtable(statement,"Select * from shoppingcart where username = 'mike'");
 
 
 
