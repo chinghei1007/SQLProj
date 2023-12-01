@@ -12,13 +12,12 @@ public class ShowTable {
     public static void showtable(Statement statement, String sql) throws SQLException {
         ResultSet resultSet = statement.executeQuery(sql);
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-        int colCount=resultSetMetaData.getColumnCount();
-
+        int colCount = resultSetMetaData.getColumnCount();
         DefaultTableModel tableModel = new DefaultTableModel();
         String[] colNames = new String[colCount];
-        for (int i = 1; i < colCount+1; i++){
+        for (int i = 1; i <= colCount; i++) {
             tableModel.addColumn(resultSetMetaData.getColumnName(i));
-            colNames[i-1] = resultSetMetaData.getColumnName(i);
+            colNames[i - 1] = resultSetMetaData.getColumnName(i);
         }
 
         while (resultSet.next()) {
@@ -34,14 +33,14 @@ public class ShowTable {
 
         JFrame jFrame = new JFrame();
         jFrame.setTitle("Test");
-        jFrame.setSize(900,600);
+        jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jFrame.setSize(900, 600);
         jFrame.setLocationRelativeTo(null);
         jFrame.add(jScrollPane);
-        //Column width auto
+
         int cellPadding = 10;
         int headerPadding = 10;
 
-        // Resize columns based on maximum content length and column headers
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for (int i = 0; i < table.getColumnCount(); i++) {
             TableColumn column = table.getColumnModel().getColumn(i);
@@ -49,7 +48,8 @@ public class ShowTable {
             if (headerRenderer == null) {
                 headerRenderer = table.getTableHeader().getDefaultRenderer();
             }
-            Component headerComp = headerRenderer.getTableCellRendererComponent(table, column.getHeaderValue(), false, false, 0, 0);
+            Component headerComp = headerRenderer.getTableCellRendererComponent(table, column.getHeaderValue(),
+                    false, false, 0, 0);
             int headerWidth = headerComp.getPreferredSize().width + headerPadding;
 
             int preferredWidth = Math.max(headerWidth, column.getMinWidth());
@@ -65,11 +65,15 @@ public class ShowTable {
                     break;
                 }
             }
+            Dimension tableSize = table.getPreferredSize();
+            int width =  900;
+            int height =  600;
+            jFrame.setSize(width, height);
+
 
             column.setPreferredWidth(preferredWidth);
         }
 
         jFrame.setVisible(true);
-
     }
 }

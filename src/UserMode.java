@@ -1,9 +1,7 @@
 import javax.swing.*;
 import javax.swing.plaf.nimbus.State;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.math.BigDecimal;
+import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,10 +141,126 @@ public class UserMode {
     }
 
     private static void shoppingcart(Connection connection, String username) throws SQLException {
-        System.out.println("Here are all the items in your shopping cart");
+        Scanner scanner = new Scanner(System.in);
+
         Statement statement = connection.createStatement();
-        //statement.executeQuery("select p.name, p.id, s.amount from shoppingcart as s, products as p where s.prodid = p.id and s.username =" + username);
-        ShowTable.showtable(statement,"select p.id, p.name,  sum(s.amount) as amount from shoppingcart as s, products as p where s.prodid = p.id and s.username ='" + username+"' group by p.id");
+
+        ShowTable.showtable(statement,
+                "select p.id, p.name, sum(s.amount) from shoppingcart s join products p on s.prodid = p.id where s.username = '"+username+"' group by p.id");
+
+        while(true) {
+
+            System.out.println("What would you like to do?");
+            System.out.println("1. Purchase all items");
+            System.out.println("2. Manage cart");
+            System.out.println("3. Back to main menu");
+
+            String choice = scanner.nextLine();
+
+            if(choice.equals("1")) {
+                purchaseAll(connection, username);
+            }
+
+            else if(choice.equals("2")) {
+                manageCart(connection, username);
+            }
+
+            else if(choice.equals("3")) {
+                return;
+            }
+        }
+    }
+    private static void purchaseAll(Connection conn, String username) throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        String choice = "";
+        if (!validateCartQuantities(conn,"john")){
+            return;
+        }
+        // get total price
+        String sql = "select sum(p.price) as total from shoppingcart as s, products as p where s.prodid = p.id and s.username = '"+username+"' group by p.id";
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        BigDecimal price = BigDecimal.valueOf(0);
+        if (resultSet.next()){
+            price = resultSet.getBigDecimal("total");
+        }
+        System.out.println("Total: $");
+
+        System.out.println("Your shipping address is as below");
+        String shippingaddress = "";
+        resultSet = statement.executeQuery("select shipping_address from users where username='" + username +"'");
+        if (resultSet.next()){
+            shippingaddress = resultSet.getString("shipping_address");
+        }
+        System.out.println(shippingaddress);
+        System.out.println("Is it correct? Y/N");
+        choice = scanner.next().toLowerCase();
+        if (choice.equals("y")){
+            statement.executeUpdate("delete from shoppingcart where username = 'john'");
+
+        }else{
+            while(true) {
+                String choice2 = "";
+                System.out.println("Set your new shipping address, it will be used for next time");
+                String newSAdress = scanner.nextLine();
+                while(true){
+                System.out.println("Is this address correct? " + newSAdress);
+                choice2 = scanner.nextLine();
+                if (choice2.equals("y")) {statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");break;}
+                if (choice2.equals("n")) {break;}
+                else {
+                    System.out.println("Invalid input, please try again");
+                }
+                }
+            }
+        }
+        while(true) {
+            System.out.println("Choose your payment method");
+            int[] paymentMethods = {1,2,3,4};
+            String[] methodss = {"Credit Card", "Debit Card", "PayPal", "RandomPay"};
+            for (int i = 0; i < paymentMethods.length; i++){
+                System.out.println(paymentMethods[i] + ". " + methodss[i]);
+            }
+            System.out.println(paymentMethods.length +1 +". Cancel");
+            String input = scanner.next();
+            try {
+
+                int choice3 = Integer.parseInt(input);
+
+                // Validate in range
+                if(choice3 < 1 || choice3 > paymentMethods.length+1) {
+                    throw new Exception("Out of range");
+                }
+
+                // Cancel option
+                if(choice3 == paymentMethods.length+1) {
+                    System.out.println("Cancelling purchase...");
+                    return;
+                }
+
+                // Valid input, break loop
+                System.out.println("Payment method: " + methodss[choice3-1]);
+                break;
+
+            } catch(NumberFormatException e) {
+                System.out.println("Please input only numbers");
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        // clear cart
+        statement.executeUpdate("delete shoppingcart where username = '" + username + "'");
+    }
+
+    private static void manageCart(Connection conn, String user) throws SQLException {
+
+        while(true) {
+            // show cart
+            // get item action - add, remove, etc
+            // update cart
+            // show cart
+        }
 
     }
 
@@ -213,6 +327,32 @@ public class UserMode {
                     System.out.println("Invalid input, please try again");
             }
         }
+    }
+    public static boolean validateCartQuantities(Connection conn, String username) throws SQLException {
+
+        String sql = "SELECT p.id, p.name, p.quantity, s.amount " +
+                "FROM shoppingcart s JOIN products p " +
+                "ON s.prodid = p.id " +
+                "WHERE s.username = ?";
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, username);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()) {
+
+            int prodId = resultSet.getInt("id");
+            int stockQty = resultSet.getInt("quantity");
+            int cartQty = resultSet.getInt("amount");
+
+            if(cartQty > stockQty) {
+                String itemName = resultSet.getString("name");
+                System.out.println("Item " + itemName + " is out of stock, cannot perform purchase");
+                return false;
+            }
+        }
+        return true;
     }
     public static boolean isPositiveInteger(String input){
         try{

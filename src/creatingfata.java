@@ -24,7 +24,10 @@ public class creatingfata {
         Statement statement = connection.createStatement();
 
         //製造table
+        //statement.executeUpdate("alter table users add column address");
+
         //statement.executeUpdate("drop table users");
+        //statement.executeUpdate("insert into users (username, password) values ('mike', 'pw123')");
         /*statement.executeUpdate("create table Users (id INT PRIMARY KEY AUTO_INCREMENT," +
                 "  username VARCHAR(50) UNIQUE NOT NULL," +
                 "  password VARCHAR(255) NOT NULL,  " +
@@ -47,7 +50,7 @@ public class creatingfata {
         //statement.executeUpdate("DROP TABLE products;");
 
         //statement.executeUpdate("create table Users, ");
-        ShowTable.showtable(statement,"select * from shoppingcart");
+        ShowTable.showtable(statement,"select * from users");
 
 
         //添加record1
