@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class UserMode {
     List<String> shoppingCart = new ArrayList<>();
-    public static void userMode(Connection connection, String username) throws SQLException {
+    public static void userMode(Connection connection, String username) throws Exception {
         System.out.println("Login successfully");
         //Home 1.Surfing 2.Shopping Cart 3.Exit
         //Surfing 1.Show all 2.Filtered
@@ -44,7 +44,7 @@ public class UserMode {
 
         }
     }
-    private static void lookproducts(Connection connection, String username) throws SQLException {
+    private static void lookproducts(Connection connection, String username) throws Exception {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
         String sql = "select id, name, brand, price, quantity from products order by rand() limit 30;";
@@ -140,7 +140,7 @@ public class UserMode {
         }
     }
 
-    private static void shoppingcart(Connection connection, String username) throws SQLException {
+    private static void shoppingcart(Connection connection, String username) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
         Statement statement = connection.createStatement();
@@ -151,14 +151,15 @@ public class UserMode {
         while(true) {
 
             System.out.println("What would you like to do?");
-            System.out.println("1. Purchase all items");
+            System.out.println("1. Purchase items");
             System.out.println("2. Manage cart");
             System.out.println("3. Back to main menu");
 
             String choice = scanner.nextLine();
 
             if(choice.equals("1")) {
-                purchaseAll(connection, username);
+                purchase(connection, username);
+                break;
             }
 
             else if(choice.equals("2")) {
@@ -170,7 +171,110 @@ public class UserMode {
             }
         }
     }
-    private static void purchaseAll(Connection conn, String username) throws SQLException {
+
+    private static void purchase(Connection connection, String username) throws Exception {
+        ResultSet resultSet;
+        Scanner scanner = new Scanner(System.in);
+        Statement statement = connection.createStatement();
+        ShowTable.showtable(statement,"select p.name,sum(s.amount), p.price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid group by s.prodid");
+        String ID;
+        while (true) {
+            System.out.println("Which would you like to purchase?");
+            ID = scanner.nextLine().trim();
+            if (!isPositiveInteger(ID)){
+                System.out.println("Please input correct ID");continue;}
+            resultSet = statement.executeQuery("select p.name as name, count(*), p.price as price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid and s.prodid ="+ID+" group by s.prodid");
+            break;
+        }
+        int exist=0;
+        String name = "";
+        float price = 0;
+        String payment = "";
+        String review;
+        if (resultSet.next()){
+            name = resultSet.getString("name");
+            exist = resultSet.getInt("count(*)");
+            price = resultSet.getFloat("price");
+        }
+        if (exist == 0) {
+            System.out.println("Product does not exist in the shopping cart");
+        }else{
+            System.out.println("Your shipping address is as below");
+            String shippingaddress = "";
+            resultSet = statement.executeQuery("select shipping_address from users where username='" + username +"'");
+            if (resultSet.next()){
+                shippingaddress = resultSet.getString("shipping_address");
+            }
+            if (shippingaddress.isEmpty()){
+
+            }else{
+                String choice;
+            System.out.println(shippingaddress);
+            System.out.println("Is it correct? Y/N");
+            choice = scanner.next().toLowerCase();
+            if (choice.equals("y")){
+            }else{
+
+                System.out.println("Set your new shipping address, it will be used for next time");
+                String newSAdress = scanner.nextLine();
+                statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");
+
+            }}
+            System.out.println("Price: $" + price);
+            while(true) {
+                System.out.println("Choose your payment method");
+                int[] paymentMethods = {1,2,3,4};
+                String[] methodss = {"Credit Card", "Debit Card", "PayPal", "RandomPay"};
+                for (int i = 0; i < paymentMethods.length; i++){
+                    System.out.println(paymentMethods[i] + ". " + methodss[i]);
+                }
+                System.out.println(paymentMethods.length +1 +". Cancel");
+                String input = scanner.next();
+                try {
+
+                    int choice3 = Integer.parseInt(input);
+
+                    // Validate in range
+                    if (choice3 < 1 || choice3 > paymentMethods.length + 1) {
+                        throw new Exception("Out of range");
+                    }
+
+                    // Cancel option
+                    if (choice3 == paymentMethods.length + 1) {
+                        System.out.println("Cancelling purchase...");
+                        return;
+                    }
+
+                    // Valid input, break loop
+                    System.out.println("Payment method: " + methodss[choice3 - 1]);
+                    payment = methodss[choice3 -1];
+                    break;
+                } catch(NumberFormatException e) {
+                System.out.println("Please input only numbers");
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+            while (true) {
+                Scanner scanner1 = new Scanner(System.in);
+                System.out.println("Please input your review from 1 to 5");
+                review = scanner1.nextLine();
+                if (!isPositiveInteger(review)){
+                    System.out.println("Not integer");
+                }else
+                if (Integer.parseInt(review) < 1 || Integer.parseInt(review) > 5){
+                    System.out.println("Please input number in range");
+                }else{
+                    break;
+                }
+
+            }
+
+            statement.executeUpdate("insert into payment_history(prod_name, price, payment_method, review) values ('" + name + "'," + price + ",'" + payment + "'," + review + ")");
+            System.out.println( name + price + payment + review);
+        }
+    }
+    /*private static void purchaseAll(Connection conn, String username) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
         if (!validateCartQuantities(conn,"john")){
@@ -184,7 +288,7 @@ public class UserMode {
         if (resultSet.next()){
             price = resultSet.getBigDecimal("total");
         }
-        System.out.println("Total: $");
+        System.out.println("Total: $" + price);
 
         System.out.println("Your shipping address is as below");
         String shippingaddress = "";
@@ -196,23 +300,14 @@ public class UserMode {
         System.out.println("Is it correct? Y/N");
         choice = scanner.next().toLowerCase();
         if (choice.equals("y")){
-            statement.executeUpdate("delete from shoppingcart where username = 'john'");
+
 
         }else{
-            while(true) {
-                String choice2 = "";
+
                 System.out.println("Set your new shipping address, it will be used for next time");
                 String newSAdress = scanner.nextLine();
-                while(true){
-                System.out.println("Is this address correct? " + newSAdress);
-                choice2 = scanner.nextLine();
-                if (choice2.equals("y")) {statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");break;}
-                if (choice2.equals("n")) {break;}
-                else {
-                    System.out.println("Invalid input, please try again");
-                }
-                }
-            }
+                statement.executeUpdate("update users set shipping_address ='"+newSAdress+"'where username ='"+ username+"'");
+
         }
         while(true) {
             System.out.println("Choose your payment method");
@@ -224,6 +319,7 @@ public class UserMode {
             System.out.println(paymentMethods.length +1 +". Cancel");
             String input = scanner.next();
             try {
+                String review;
 
                 int choice3 = Integer.parseInt(input);
 
@@ -240,6 +336,28 @@ public class UserMode {
 
                 // Valid input, break loop
                 System.out.println("Payment method: " + methodss[choice3-1]);
+                while(true) {
+                    System.out.println("Please rate the product from 1-5");
+                    review = "";
+                    review = scanner.next();
+                    if (isPositiveInteger(review) && Integer.parseInt(review) > 0 && Integer.parseInt(review) < 6){break;}
+                    System.out.println("Please type numbers between 1 to 5");
+                }
+
+                PreparedStatement stmt = conn.prepareStatement("SELECT p.name, p.id, p.price FROM products as p, shoppingcart as p WHERE p.id = s.prodid and s.username = '" + username + "'");
+
+                ResultSet rs = stmt.executeQuery();
+
+                while(rs.next()) {
+                    String prodID = rs.getString("p.id");
+                    String name = rs.getString("p.name");
+                    String Indprice = rs.getString("p.price");
+
+
+                }
+                statement.executeUpdate("delete from shoppingcart where username = 'john'");
+
+
                 break;
 
             } catch(NumberFormatException e) {
@@ -251,7 +369,7 @@ public class UserMode {
 
         // clear cart
         statement.executeUpdate("delete shoppingcart where username = '" + username + "'");
-    }
+    }*/
 
     private static void manageCart(Connection conn, String user) throws SQLException {
 

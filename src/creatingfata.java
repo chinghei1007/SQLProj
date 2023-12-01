@@ -25,7 +25,7 @@ public class creatingfata {
 
         //製造table
         //statement.executeUpdate("alter table users add column address");
-
+        //statement.executeUpdate("create table payment_history (id int primary key auto_increment, Prod_name varchar(100), price decimal(10,2), payment_method varchar(100), review int)");
         //statement.executeUpdate("drop table users");
         //statement.executeUpdate("insert into users (username, password) values ('mike', 'pw123')");
         /*statement.executeUpdate("create table Users (id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -50,7 +50,12 @@ public class creatingfata {
         //statement.executeUpdate("DROP TABLE products;");
 
         //statement.executeUpdate("create table Users, ");
-        ShowTable.showtable(statement,"select * from users");
+        //ShowTable.showtable(statement,"select * from payment_history");
+        //ShowTable.showtable(statement, "select count(*), p.price from products p, shoppingcart s where s.username = 'john' and p.id = s.prodid and s.prodid =1 group by s.prodid");
+        //ShowTable.showtable(statement,"select p.name,s.amount, p.price from products p, shoppingcart s where s.username = '" + username + "' and p.id = s.prodid");
+        ShowTable.showtable(statement,"Select * from payment_history");
+
+
 
 
         //添加record1

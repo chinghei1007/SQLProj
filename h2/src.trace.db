@@ -463,3 +463,140 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/ching/I
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 13 more
+2023-12-01 20:27:08.926246+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "JOHN" not found; SQL statement:
+select p.name, p.id, s.amount from shoppingcart as s, products as p where s.prodid = p.id and s.username =john [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:148)
+	at org.h2.expression.condition.ConditionAndOr.optimize(ConditionAndOr.java:137)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1177)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	at ShowTable.showtable(ShowTable.java:13)
+	at UserMode.shoppingcart(UserMode.java:149)
+	at UserMode.userMode(UserMode.java:37)
+	at Login.authenticate(Login.java:44)
+	at Menu.main(Menu.java:9)
+2023-12-01 21:04:40.766194+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert [*]table users (username, password) values (mike, pw123)"; expected "INTO"; SQL statement:
+insert table users (username, password) values (mike, pw123) [42001-224]
+2023-12-01 21:59:19.611378+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "S.PRICE" not found; SQL statement:
+select sum(s.price) as total  from shoppingcart s join products p on s.prodid = p.id where s.username = 'john' group by p.id [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.aggregate.AbstractAggregate.optimize(AbstractAggregate.java:101)
+	at org.h2.expression.aggregate.Aggregate.optimize(Aggregate.java:948)
+	at org.h2.expression.Alias.optimize(Alias.java:52)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	at UserMode.purchaseAll(UserMode.java:182)
+	at UserMode.shoppingcart(UserMode.java:161)
+	at UserMode.userMode(UserMode.java:35)
+	at Login.authenticate(Login.java:44)
+	at Menu.main(Menu.java:9)
+2023-12-01 22:02:26.952636+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "JOHN" not found; SQL statement:
+select shipping_address from users where username=john [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:148)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1177)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	at UserMode.purchaseAll(UserMode.java:191)
+	at UserMode.shoppingcart(UserMode.java:161)
+	at UserMode.userMode(UserMode.java:35)
+	at Login.authenticate(Login.java:44)
+	at Menu.main(Menu.java:9)
+2023-12-01 22:18:55.258299+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table payment_history (id int primary key auto_increment, Prod_name varchar(100), price int [*](10,2), payment_method varchar(100), review int(1))"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table payment_history (id int primary key auto_increment, Prod_name varchar(100), price int (10,2), payment_method varchar(100), review int(1)) [42001-224]
+2023-12-01 22:19:36.325721+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table payment_history (id int primary key auto_increment, Prod_name varchar(100), price decimal(10,2), payment_method varchar(100), review int[*](1))"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table payment_history (id int primary key auto_increment, Prod_name varchar(100), price decimal(10,2), payment_method varchar(100), review int(1)) [42001-224]
+2023-12-01 22:46:00.296654+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select p.name s[*].amount, p.price from products as p, shoppingcart as s where s.username = 'test' and p.id = s.prodid"; SQL statement:
+select p.name s.amount, p.price from products as p, shoppingcart as s where s.username = 'test' and p.id = s.prodid [42000-224]
+2023-12-01 22:49:15.793094+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "S.PROID" not found; SQL statement:
+select * from products p, shoppingcart s where s.username = 'john' and p.id = s.proid [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:148)
+	at org.h2.expression.condition.ConditionAndOr.optimize(ConditionAndOr.java:137)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1177)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	at ShowTable.showtable(ShowTable.java:13)
+	at creatingfata.main(creatingfata.java:54)
+2023-12-01 23:17:23.482087+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "p.price" not found [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getFloat(JdbcResultSet.java:794)
+	at UserMode.purchase(UserMode.java:194)
+	at UserMode.shoppingcart(UserMode.java:161)
+	at UserMode.userMode(UserMode.java:35)
+	at Login.authenticate(Login.java:44)
+	at Menu.main(Menu.java:9)
+2023-12-01 23:19:28.760330+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select count(*), p.price from products p, shoppingcart s where s.username = [*]'john'' and p.id = s.prodid and s.prodid =1 group by s.prodid"; SQL statement:
+select count(*), p.price from products p, shoppingcart s where s.username = 'john'' and p.id = s.prodid and s.prodid =1 group by s.prodid [42000-224]
+2023-12-01 23:20:36.571981+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "p.price" not found [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getFloat(JdbcResultSet.java:794)
+	at UserMode.purchase(UserMode.java:194)
+	at UserMode.shoppingcart(UserMode.java:161)
+	at UserMode.userMode(UserMode.java:35)
+	at Login.authenticate(Login.java:44)
+	at Menu.main(Menu.java:9)

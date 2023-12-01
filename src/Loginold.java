@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Loginold {
-    public static void login() throws IOException, InterruptedException, SQLException {
+    public static void login() throws Exception {
         Scanner scanner = new Scanner(System.in);
         Connection connection;
         String username;
