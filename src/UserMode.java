@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,10 +31,10 @@ public class UserMode {
             }
             switch (choice){
                 case 1: //look for products
-                    lookproducts(connection);
+                    lookproducts(connection,username);
                     continue;
                 case 2:
-                    shoppingcart(connection);
+                    shoppingcart(connection,username);
                     continue;
                 case 3:
                     System.out.println("The system will now terminate");
@@ -45,10 +46,10 @@ public class UserMode {
 
         }
     }
-    private static void lookproducts(Connection connection) throws SQLException {
+    private static void lookproducts(Connection connection, String username) throws SQLException {
         System.out.println("Here are some products for you: ");
         Statement statement = connection.createStatement();
-        String sql = "select id, name, brand, price from products order by random() limit 30;";
+        String sql = "select id, name, brand, price from products order by rand() limit 30;";
         SwingUtilities.invokeLater(() -> {
             try {
                 ShowTable.showtable(statement, sql);
@@ -82,13 +83,18 @@ public class UserMode {
                             System.out.println("Product not found, Please try again");
                             continue;
                         } else {
-                            addtoshoppingcart(name, quantityinDb, Integer.parseInt(productID));
+                            addtoshoppingcart(username, statement, name, quantityinDb, Integer.parseInt(productID));
                             break;
                         }
                     }
                 }
             case "n":
                 System.out.println("What you wish to do next?");
+                System.out.println("1. Search for more products");
+                System.out.println("2. Look at items in shopping cart");
+                String choice = "";
+
+
                 break;
             default:
                 System.out.println("Invalid input, please try again.");
@@ -100,7 +106,7 @@ public class UserMode {
     private static void shoppingcart(Connection connection) {
     }
 
-    private static void addtoshoppingcart(String name, int quantity, int ID) {
+    private static void addtoshoppingcart(String username, Statement statement, String name, int quantity, int ID) throws SQLException {
         int amount = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input amount");
@@ -118,10 +124,10 @@ public class UserMode {
             while (true) {
                 switch (choice) {
                     case "1":
-                        addtoshoppingcart(name, quantity, ID);
+                        addtoshoppingcart(username,statement, name, quantity, ID);
                         break;
                     case "2":
-                        confirmAddToShoppingCart(name, quantity, ID, quantity);
+                        confirmAddToShoppingCart(statement,username, name, quantity, ID, quantity);
                         break;
                     case "3":
                         return;
@@ -131,10 +137,10 @@ public class UserMode {
             }
 
         } else {
-            confirmAddToShoppingCart(name, amount, ID, quantity);
+            confirmAddToShoppingCart(statement,username, name, amount, ID, quantity);
         }
     }
-    private static void confirmAddToShoppingCart(String name, int amount, int ID, int quantity){
+    private static void confirmAddToShoppingCart(Statement statement, String username, String name, int amount, int ID, int quantity) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         String choice;
         System.out.println("Product Information as below: ");
@@ -145,6 +151,9 @@ public class UserMode {
         while(true) {
             switch (choice.toLowerCase()) {
                 case "y":
+                    statement.executeUpdate("insert into shoppingcart (username, prodid, amount) values ("+ username + "," + ID + "," + amount + ")");
+                    System.out.println("executed addtoShoppingCart");
+                    break;
                 case "n":
                     System.out.println("What would you like to do?");
                     System.out.println("1. Update amount");
@@ -152,11 +161,10 @@ public class UserMode {
                     String choice2;
                     choice2 = scanner.nextLine().trim();
                     if (choice2.equals("1")){
-
-                    }
-
-
-
+                        addtoshoppingcart(username, statement, name, quantity, ID);
+                    } else if (choice2.equals("2")){
+                        return;
+                }
                 default:
                     System.out.println("Invalid input, please try again");
             }

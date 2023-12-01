@@ -24,25 +24,33 @@ public class creatingfata {
         Statement statement = connection.createStatement();
 
         //製造table
-        statement.executeUpdate("drop table users");
-        statement.executeUpdate("create table Users (id INT PRIMARY KEY AUTO_INCREMENT," +
+        //statement.executeUpdate("drop table users");
+        /*statement.executeUpdate("create table Users (id INT PRIMARY KEY AUTO_INCREMENT," +
                 "  username VARCHAR(50) UNIQUE NOT NULL," +
                 "  password VARCHAR(255) NOT NULL,  " +
                 "  is_admin BOOLEAN DEFAULT FALSE," +
                 "  shipping_address TEXT" +
                 ");");
+         */
+        //statement.executeUpdate("ALTER TABLE products " + "ADD COLUMN id INT primary key auto_increment;");
+        //statement.executeUpdate("ALTER TABLE shoppingcart ADD COLUMN amount int;");
+        //statement.executeUpdate("ALTER TABLE products aLTER COLUMN id SET PRIMARY KEY AUTO_INCREMENT");
+        //statement.executeUpdate("create table products (id int, name varchar(100), category varchar(100), price decimal(10,2), brand varchar(100))");
+        //statement.executeUpdate("create table shoppingcart(id INT PRIMARY KEY AUTO_INCREMENT, username varchar(100), prodID int)");
+
         //john, pw123
-        statement.executeUpdate("INSERT INTO Users (username, password, is_admin, shipping_address) VALUES ('john', 'pw123', FALSE, '123 Main St');");
+        //statement.executeUpdate("INSERT INTO Users (username, password, is_admin, shipping_address) VALUES ('john', 'pw123', FALSE, '123 Main St');");
         //statement.executeUpdate("insert into products1 select id,name,category,price,brand from products");
         //statement.executeUpdate("DROP TABLE products;");
 
         //add column quantity
         //statement.executeUpdate("create table Users, ");
-        ShowTable.showtable(statement,"select * from Users");
+        ShowTable.showtable(statement,"select * from shoppingcart");
 
 
         //添加record1
-        /*BufferedReader reader = new BufferedReader(new FileReader("records1.txt"));
+        /*
+        BufferedReader reader = new BufferedReader(new FileReader("records1.txt"));
         List<String> satement = new ArrayList<>();
         String line;
         while ((line = reader.readLine()) != null){

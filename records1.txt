@@ -14,12 +14,12 @@ INSERT INTO products (id, category, price, brand, name) VALUES (13, 'Toys', 24.9
 INSERT INTO products (id, category, price, brand, name) VALUES (14, 'Electronics', 249.00, 'Samsung', 'Phone');
 INSERT INTO products (id, category, price, brand, name) VALUES (15, 'Home', 119.99, 'Instant Pot', 'Product 15');
 INSERT INTO products (id, category, price, brand, name) VALUES (16, 'Clothing', 59.50, 'Champion', 'Blue Cotton Casual T-Shirt');
-INSERT INTO products (id, category, price, brand, name) VALUES (17, 'Books', 16.99, 'Scholastic', 'Harry Potter and the Sorcerer''s Stone'); 
+INSERT INTO products (id, category, price, brand, name) VALUES (17, 'Books', 16.99, 'Scholastic', 'Harry Potter and the Sorcerer''s Stone');
 INSERT INTO products (id, category, price, brand, name) VALUES (18, 'Beauty', 19.99, 'Nyx', 'Butter Gloss Lip Balm in Madeline');
 INSERT INTO products (id, category, price, brand, name) VALUES (19, 'Toys', 24.99, 'Fisher-Price', 'Laugh & Learn Apptivity Case Laptop');
 INSERT INTO products (id, category, price, brand, name) VALUES (20, 'Electronics', 249.00, 'Bose', 'SoundLink Color Bluetooth Speaker II - Ultrasonic Blue');
 INSERT INTO products (id, category, price, brand, name) VALUES (21, 'Home', 139.99, 'Oxo', 'Good Grips Pop Container with Airtight Silicone Lids');
-INSERT INTO products (id, category, price, brand, name) VALUES (22, 'Clothing', 79.50, 'Ray-Ban', 'RB3548N Round Metal Sunglasses'); 
+INSERT INTO products (id, category, price, brand, name) VALUES (22, 'Clothing', 79.50, 'Ray-Ban', 'RB3548N Round Metal Sunglasses');
 INSERT INTO products (id, category, price, brand, name) VALUES (23, 'Books', 19.99, 'Scholastic', 'Diary of a Wimpy Kid: The Meltdown (Book 13)');
 INSERT INTO products (id, category, price, brand, name) VALUES (24, 'Beauty', 29.99, 'L*Oreal Paris', 'EverPure Sulfate Free Shampoo for Color Treated Hair');
 INSERT INTO products (id, category, price, brand, name) VALUES (25, 'Toys', 24.99, 'Playmobil', 'Pirate Ship Adventure Playset');
@@ -30,7 +30,7 @@ INSERT INTO products (id, category, price, brand, name) VALUES (29, 'Books', 15.
 INSERT INTO products (id, category, price, brand, name) VALUES (30, 'Beauty', 29.99, 'e.l.f. Cosmetics', 'Poreless Putty Primer');
 INSERT INTO products (id, category, price, brand, name) VALUES (31, 'Toys', 19.99, 'Play-Doh', 'Play-Doh Kitchen Creations Cake Bake and Serve Playset');
 INSERT INTO products (id, category, price, brand, name) VALUES (32, 'Electronics', 399.00, 'Apple', 'iPhone 13 Pro Max 128GB Sierra Blue');
-INSERT INTO products (id, category, price, brand, name) VALUES (33, 'Home', 129.99, 'Cuisinart', 'Programmable Convection Toaster Oven Airfryer');  
+INSERT INTO products (id, category, price, brand, name) VALUES (33, 'Home', 129.99, 'Cuisinart', 'Programmable Convection Toaster Oven Airfryer');
 INSERT INTO products (id, category, price, brand, name) VALUES (34, 'Clothing', 74.50, 'Champion', 'Reverse Weave Hoodie');
 INSERT INTO products (id, category, price, brand, name) VALUES (35, 'Books', 24.99, 'DC Comics', 'Batman: The Dark Prince Charming');
 INSERT INTO products (id, category, price, brand, name) VALUES (36, 'Beauty', 19.99, 'Garnier', 'SkinActive Clearly Brighter Brightening & Smoothing Daily Moisturizer');
@@ -39,7 +39,7 @@ INSERT INTO products (id, category, price, brand, name) VALUES (38, 'Electronics
 INSERT INTO products (id, category, price, brand, name) VALUES (39, 'Home', 139.99, 'Cuisinart', '2-in-1 Electric Griddle');
 INSERT INTO products (id, category, price, brand, name) VALUES (40, 'Clothing', 79.50, 'Under Armour', 'HeatGear Legging');
 INSERT INTO products (id, category, price, brand, name) VALUES (41, 'Books', 23.99, 'Penguin Classics', 'Frankenstein');
-INSERT INTO products (id, category, price, brand, name) VALUES (42, 'Beauty', 19.99, 'Nyx', 'Soft Matte Lip Cream'); 
+INSERT INTO products (id, category, price, brand, name) VALUES (42, 'Beauty', 19.99, 'Nyx', 'Soft Matte Lip Cream');
 INSERT INTO products (id, category, price, brand, name) VALUES (43, 'Toys', 24.99, 'Playmobil', 'Pizza Delivery');
 INSERT INTO products (id, category, price, brand, name) VALUES (44, 'Electronics', 249.00, 'JBL', 'Flip Essential Waterproof Portable Bluetooth Speaker');
 INSERT INTO products (id, category, price, brand, name) VALUES (45, 'Home', 139.99, 'Crock-Pot', '6-Quart Slow Cooker');
@@ -54,12 +54,12 @@ INSERT INTO products (id, category, price, brand, name) VALUES (53, 'Books', 21.
 INSERT INTO products (id, category, price, brand, name) VALUES (54, 'Beauty', 24.99, 'Neutrogena', 'Hydro Boost Hyaluronic Acid Hydrating Tinted Moisturizer Broad Spectrum SPF 30');
 INSERT INTO products (id, category, price, brand, name) VALUES (55, 'Toys', 24.99, 'Mattel', 'Uno Card Game');
 INSERT INTO products (id, category, price, brand, name) VALUES (56, 'Electronics', 299.00, 'Bose', 'QuietComfort 35 II Wireless Bluetooth Headphones');
-INSERT INTO products (id, category, price, brand, name) VALUES (57, 'Home', 129.99, 'Ninja', 'Professional Plus Kitchen System with Auto-iQ');  
+INSERT INTO products (id, category, price, brand, name) VALUES (57, 'Home', 129.99, 'Ninja', 'Professional Plus Kitchen System with Auto-iQ');
 INSERT INTO products (id, category, price, brand, name) VALUES (58, 'Clothing', 69.50, 'Under Armour', 'Tech 2.0 Short Sleeve T-Shirt');
 INSERT INTO products (id, category, price, brand, name) VALUES (59, 'Books', 17.99, 'Marvel', 'Captain America by Ta-Nehisi Coates Vol. 1: The Death of Captain America');
 INSERT INTO products (id, category, price, brand, name) VALUES (60, 'Beauty', 19.99, 'Nyx', 'Professional Makeup Epic Ink Liner');
 INSERT INTO products (id, category, price, brand, name) VALUES (61, 'Toys', 24.99, 'Hasbro', 'Jenga Classic Game');
-INSERT INTO products (id, category, price, brand, name) VALUES (62, 'Electronics', 229.00, 'JBL', 'Flip Essential Portable Bluetooth Speaker');  
+INSERT INTO products (id, category, price, brand, name) VALUES (62, 'Electronics', 229.00, 'JBL', 'Flip Essential Portable Bluetooth Speaker');
 INSERT INTO products (id, category, price, brand, name) VALUES (63, 'Home', 129.99, 'Crock-Pot', '6-Quart Manual Slow Cooker');
 INSERT INTO products (id, category, price, brand, name) VALUES (64, 'Clothing', 59.50, 'Champion', 'Reverse Weave Fleece Hoodie');
 INSERT INTO products (id, category, price, brand, name) VALUES (65, 'Books', 16.99, 'DC Comics', 'Batman: The Dark Knight Returns 30th Anniversary Edition');
@@ -75,7 +75,7 @@ INSERT INTO products (id, category, price, brand, name) VALUES (74, 'Electronics
 INSERT INTO products (id, category, price, brand, name) VALUES (75, 'Home', 129.99, 'Cuisinart', 'Food Processor');
 INSERT INTO products (id, category, price, brand, name) VALUES (76, 'Clothing', 79.50, 'Adidas', 'Sweatpants');
 INSERT INTO products (id, category, price, brand, name) VALUES (77, 'Books', 18.99, 'Scholastic', 'Diary of a Wimpy Kid: Wrecking Ball');
-INSERT INTO products (id, category, price, brand, name) VALUES (78, 'Beauty', 24.99, 'Maybelline', 'Instant Age Rewind Multi Use Concealer');  
+INSERT INTO products (id, category, price, brand, name) VALUES (78, 'Beauty', 24.99, 'Maybelline', 'Instant Age Rewind Multi Use Concealer');
 INSERT INTO products (id, category, price, brand, name) VALUES (79, 'Toys', 24.99, 'Playmobil', 'City Life Fire Station');
 INSERT INTO products (id, category, price, brand, name) VALUES (80, 'Electronics', 249.00, 'Bose', 'QuietComfort 35 II Wireless Headphones');
 INSERT INTO products (id, category, price, brand, name) VALUES (81, 'Home', 139.99, 'Instant Pot', 'Duo Crisp + Air Fryer');
@@ -86,7 +86,7 @@ INSERT INTO products (id, category, price, brand, name) VALUES (85, 'Toys', 24.9
 INSERT INTO products (id, category, price, brand, name) VALUES (86, 'Electronics', 249.00, 'Anthropic', 'SoundLink Flex Bluetooth Speaker');
 INSERT INTO products (id, category, price, brand, name) VALUES (87, 'Home', 99.99, 'Calphalon', '10-Piece Hard-Anodized Nonstick Cookware Set');
 INSERT INTO products (id, category, price, brand, name) VALUES (88, 'Clothing', 79.50, 'Tommy Hilfiger', 'Quarter-Zip Pullover');
-INSERT INTO products (id, category, price, brand, name) VALUES (89, 'Books', 16.99, 'Scholastic', 'The Bad Guys: Dawn of the Underlord (Book 20)');  
+INSERT INTO products (id, category, price, brand, name) VALUES (89, 'Books', 16.99, 'Scholastic', 'The Bad Guys: Dawn of the Underlord (Book 20)');
 INSERT INTO products (id, category, price, brand, name) VALUES (90, 'Beauty', 24.99, 'NYX Professional Makeup', 'Fill, Stop & Blot Pressed Powder');
 INSERT INTO products (id, category, price, brand, name) VALUES (91, 'Toys', 24.99, 'Nerf', 'N-Strike Elite Flipshots Blaster');
 INSERT INTO products (id, category, price, brand, name) VALUES (92, 'Electronics', 199.00, 'Fitbit', 'Charge 5 Fitness and Health Tracker');

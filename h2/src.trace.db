@@ -270,3 +270,79 @@ SELECT * FROM Users WHERE Username = ? [90012-224]
 	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:101)
 	at Login.authenticate(Login.java:27)
 	at Menu.main(Menu.java:9)
+2023-12-01 15:53:59.564327+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table shoppingcart(username varchar(100), prodID int[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table shoppingcart(username varchar(100), prodID int [42001-224]
+2023-12-01 15:55:13.641594+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table shoppingcart(id INT PRIMARY KEY AUTO_INCREMENT, username varchar(100), prodID int[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table shoppingcart(id INT PRIMARY KEY AUTO_INCREMENT, username varchar(100), prodID int [42001-224]
+2023-12-01 16:06:31.680083+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TABLE_NAME" not found; SQL statement:
+ALTER TABLE table_name DROP COLUMN id; [42102-224]
+2023-12-01 16:07:28.881401+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ID" not found; SQL statement:
+ALTER TABLE products aLTER COLUMN id SET PRIMARY KEY AUTO_INCREMENT [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:775)
+	at org.h2.command.Parser.columnIfTableExists(Parser.java:8585)
+	at org.h2.command.Parser.parseAlterTableAlter(Parser.java:8171)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:8157)
+	at org.h2.command.Parser.parseAlter(Parser.java:7211)
+	at org.h2.command.Parser.parsePrepared(Parser.java:650)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:35)
+2023-12-01 16:08:15.731538+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TABLE_NAME" not found; SQL statement:
+ALTER TABLE table_name ADD COLUMN id INT [42102-224]
+2023-12-01 16:08:26.271105+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE products aLTER COLUMN id SET [*]PRIMARY KEY AUTO_INCREMENT"; SQL statement:
+ALTER TABLE products aLTER COLUMN id SET PRIMARY KEY AUTO_INCREMENT [42000-224]
+2023-12-01 16:11:52.282529+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE products  [*]MODIFY COLUMN id int FIRST;"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE products  MODIFY COLUMN id int FIRST; [42001-224]
+2023-12-01 16:13:26.459765+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "PK_ID" not found; SQL statement:
+ALTER TABLE products DROP CONSTRAINT pk_id [90057-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableDropConstraint.update(AlterTableDropConstraint.java:51)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.command.CommandList.update(CommandList.java:65)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:196)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:35)
+2023-12-01 16:22:04.477282+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Duplicate column name "AMOUNT"; SQL statement:
+ALTER TABLE shoppingcart ADD COLUMN amount int [42121-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.setColumns(Table.java:494)
+	at org.h2.table.TableBase.<init>(TableBase.java:73)
+	at org.h2.mvstore.db.MVTable.<init>(MVTable.java:139)
+	at org.h2.mvstore.db.Store.createTable(Store.java:216)
+	at org.h2.schema.Schema.createTable(Schema.java:797)
+	at org.h2.command.ddl.AlterTableAlterColumn.cloneTableStructure(AlterTableAlterColumn.java:458)
+	at org.h2.command.ddl.AlterTableAlterColumn.copyData(AlterTableAlterColumn.java:343)
+	at org.h2.command.ddl.AlterTableAlterColumn.update(AlterTableAlterColumn.java:244)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:196)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:147)
+	at creatingfata.main(creatingfata.java:36)
